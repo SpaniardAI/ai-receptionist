@@ -1,4 +1,4 @@
-\# Retell AI Conversation Flow
+# Retell AI Conversation Flow
 
 
 
@@ -12,7 +12,7 @@ Languages: English and Spanish
 
 
 
-\## Overview
+## Overview
 
 
 
@@ -24,7 +24,7 @@ Spanish-speaking callers are routed to the Spanish agent flow.
 
 
 
-\## Flow Diagram
+## Flow Diagram
 
 
 
@@ -32,63 +32,63 @@ Spanish-speaking callers are routed to the Spanish agent flow.
 
 flowchart TD
 
-&#x20;   A\[Begin] --> B\[Welcome \& Language Check]
+    A[Begin] --> B[Welcome & Language Check]
 
-&#x20;   B -->|Spanish| C\[Spanish Agent Transfer]
+    B -->|Spanish| C[Spanish Agent Transfer]
 
-&#x20;   B -->|English| D\[Identify Caller \& Intent]
-
-
-
-&#x20;   D --> E\[Buyer Intake]
-
-&#x20;   D --> F\[Seller Intake]
-
-&#x20;   D --> G\[Renter Intake]
-
-&#x20;   D --> H\[Landlord Intake]
-
-&#x20;   D --> I\[Investor Intake]
-
-&#x20;   D --> J\[Existing Client Message]
-
-&#x20;   D --> K\[Professional \& Transaction Partner]
-
-&#x20;   D --> L\[General Message \& Other]
+    B -->|English| D[Identify Caller & Intent]
 
 
 
-&#x20;   E --> M\[Confirm Details]
+    D --> E[Buyer Intake]
 
-&#x20;   F --> M
+    D --> F[Seller Intake]
 
-&#x20;   G --> M
+    D --> G[Renter Intake]
 
-&#x20;   H --> M
+    D --> H[Landlord Intake]
 
-&#x20;   I --> M
+    D --> I[Investor Intake]
 
-&#x20;   J --> M
+    D --> J[Existing Client Message]
 
-&#x20;   K --> M
+    D --> K[Professional & Transaction Partner]
 
-&#x20;   L --> M
+    D --> L[General Message & Other]
 
 
 
-&#x20;   M --> N\[Final Goodbye]
+    E --> M[Confirm Details]
 
-&#x20;   N --> O\[End Call]
+    F --> M
+
+    G --> M
+
+    H --> M
+
+    I --> M
+
+    J --> M
+
+    K --> M
+
+    L --> M
+
+
+
+    M --> N[Final Goodbye]
+
+    N --> O[End Call]
 
 ```
 
 
 
-\## Nodes
+## Nodes
 
 
 
-\### 1. Begin
+### 1. Begin
 
 
 
@@ -96,11 +96,11 @@ Entry point for every incoming call.
 
 
 
-Transitions automatically to `Welcome \& Language Check`.
+Transitions automatically to `Welcome & Language Check`.
 
 
 
-\### 2. Welcome \& Language Check
+### 2. Welcome & Language Check
 
 
 
@@ -112,13 +112,13 @@ Transitions:
 
 
 
-\* Spanish detected or requested → `Spanish Agent Transfer`
+- Spanish detected or requested → `Spanish Agent Transfer`
 
-\* Otherwise → `Identify Caller \& Intent`
+- Otherwise → `Identify Caller & Intent`
 
 
 
-\### 3. Spanish Agent Transfer
+### 3. Spanish Agent Transfer
 
 
 
@@ -130,7 +130,7 @@ The Spanish workflow should preserve the same intake categories, safety rules, a
 
 
 
-\### 4. Identify Caller \& Intent
+### 4. Identify Caller & Intent
 
 
 
@@ -142,29 +142,29 @@ Supported caller types include:
 
 
 
-\* Prospective buyer
+- Prospective buyer
 
-\* Prospective seller
+- Prospective seller
 
-\* Prospective renter
+- Prospective renter
 
-\* Landlord
+- Landlord
 
-\* Investor
+- Investor
 
-\* Existing client
+- Existing client
 
-\* Real estate agent
+- Real estate agent
 
-\* Lender
+- Lender
 
-\* Title-company representative
+- Title-company representative
 
-\* Inspector
+- Inspector
 
-\* Vendor
+- Vendor
 
-\* Other caller
+- Other caller
 
 
 
@@ -172,7 +172,7 @@ Transitions to the intake or message node corresponding to the caller’s intent
 
 
 
-\### 5. Buyer Intake
+### 5. Buyer Intake
 
 
 
@@ -184,25 +184,25 @@ Information collected:
 
 
 
-\* Full name
+- Full name
 
-\* Best callback number
+- Best callback number
 
-\* Email address
+- Email address
 
-\* Specific property or MLS number, when applicable
+- Specific property or MLS number, when applicable
 
-\* Preferred location
+- Preferred location
 
-\* Approximate price range
+- Approximate price range
 
-\* Desired bedrooms and bathrooms
+- Desired bedrooms and bathrooms
 
-\* Purchase timeframe
+- Purchase timeframe
 
-\* Financing status
+- Financing status
 
-\* Whether the caller is working with another agent
+- Whether the caller is working with another agent
 
 
 
@@ -210,11 +210,11 @@ High-priority indicators include:
 
 
 
-\* Purchase timeframe of one to three months
+- Purchase timeframe of one to three months
 
-\* Mortgage pre-approval
+- Mortgage pre-approval
 
-\* Cash purchase
+- Cash purchase
 
 
 
@@ -222,7 +222,7 @@ Transitions to `Confirm Details`.
 
 
 
-\### 6. Seller Intake
+### 6. Seller Intake
 
 
 
@@ -230,21 +230,21 @@ Collects:
 
 
 
-\* Full name
+- Full name
 
-\* Best callback number
+- Best callback number
 
-\* Email address
+- Email address
 
-\* Property address
+- Property address
 
-\* Property type
+- Property type
 
-\* Bedrooms and bathrooms
+- Bedrooms and bathrooms
 
-\* Intended selling timeframe
+- Intended selling timeframe
 
-\* Preferred callback time
+- Preferred callback time
 
 
 
@@ -256,7 +256,7 @@ Transitions to `Confirm Details`.
 
 
 
-\### 7. Renter Intake
+### 7. Renter Intake
 
 
 
@@ -264,21 +264,21 @@ Collects:
 
 
 
-\* Full name
+- Full name
 
-\* Best callback number
+- Best callback number
 
-\* Email address
+- Email address
 
-\* Specific property, when applicable
+- Specific property, when applicable
 
-\* Preferred area
+- Preferred area
 
-\* Monthly rental budget
+- Monthly rental budget
 
-\* Desired bedrooms
+- Desired bedrooms
 
-\* Desired move-in timeframe
+- Desired move-in timeframe
 
 
 
@@ -286,7 +286,7 @@ Transitions to `Confirm Details`.
 
 
 
-\### 8. Landlord Intake
+### 8. Landlord Intake
 
 
 
@@ -294,19 +294,19 @@ Collects:
 
 
 
-\* Full name
+- Full name
 
-\* Best callback number
+- Best callback number
 
-\* Email address
+- Email address
 
-\* Property address
+- Property address
 
-\* Property type
+- Property type
 
-\* Description of the assistance needed
+- Description of the assistance needed
 
-\* Preferred callback time
+- Preferred callback time
 
 
 
@@ -314,7 +314,7 @@ Transitions to `Confirm Details`.
 
 
 
-\### 9. Investor Intake
+### 9. Investor Intake
 
 
 
@@ -322,23 +322,23 @@ Collects:
 
 
 
-\* Full name
+- Full name
 
-\* Best callback number
+- Best callback number
 
-\* Email address
+- Email address
 
-\* Property or investment type
+- Property or investment type
 
-\* Preferred area
+- Preferred area
 
-\* Approximate budget or price range
+- Approximate budget or price range
 
-\* Investment timeframe
+- Investment timeframe
 
-\* Financing status
+- Financing status
 
-\* Specific property address or MLS number, when applicable
+- Specific property address or MLS number, when applicable
 
 
 
@@ -346,7 +346,7 @@ Transitions to `Confirm Details`.
 
 
 
-\### 10. Existing Client Message
+### 10. Existing Client Message
 
 
 
@@ -358,17 +358,17 @@ Collects:
 
 
 
-\* Full name
+- Full name
 
-\* Best callback number
+- Best callback number
 
-\* Property address or transaction involved
+- Property address or transaction involved
 
-\* Reason for calling
+- Reason for calling
 
-\* Whether the matter is time-sensitive
+- Whether the matter is time-sensitive
 
-\* Preferred callback time
+- Preferred callback time
 
 
 
@@ -376,7 +376,7 @@ Transitions to `Confirm Details`.
 
 
 
-\### 11. Professional \& Transaction Partner
+### 11. Professional & Transaction Partner
 
 
 
@@ -384,17 +384,17 @@ Handles calls from:
 
 
 
-\* Real estate agents
+- Real estate agents
 
-\* Lenders
+- Lenders
 
-\* Title-company representatives
+- Title-company representatives
 
-\* Inspectors
+- Inspectors
 
-\* Vendors
+- Vendors
 
-\* Other transaction partners
+- Other transaction partners
 
 
 
@@ -402,21 +402,21 @@ Collects:
 
 
 
-\* Full name
+- Full name
 
-\* Company name
+- Company name
 
-\* Professional role
+- Professional role
 
-\* Best callback number
+- Best callback number
 
-\* Email address, when appropriate
+- Email address, when appropriate
 
-\* Property address or transaction involved
+- Property address or transaction involved
 
-\* Reason for calling
+- Reason for calling
 
-\* Whether the matter is time-sensitive
+- Whether the matter is time-sensitive
 
 
 
@@ -424,7 +424,7 @@ Transitions to `Confirm Details`.
 
 
 
-\### 12. General Message \& Other
+### 12. General Message & Other
 
 
 
@@ -436,19 +436,19 @@ Collects:
 
 
 
-\* Full name
+- Full name
 
-\* Best callback number
+- Best callback number
 
-\* Email address, when appropriate
+- Email address, when appropriate
 
-\* Reason for calling
+- Reason for calling
 
-\* Property address, when relevant
+- Property address, when relevant
 
-\* Preferred callback time
+- Preferred callback time
 
-\* Whether the matter is time-sensitive
+- Whether the matter is time-sensitive
 
 
 
@@ -460,7 +460,7 @@ Valid callers transition to `Confirm Details`.
 
 
 
-\### 13. Confirm Details
+### 13. Confirm Details
 
 
 
@@ -472,21 +472,21 @@ Responsibilities:
 
 
 
-\* Validate that a US callback number contains exactly 10 digits, excluding an optional leading country code of 1
+- Validate that a US callback number contains exactly 10 digits, excluding an optional leading country code of 1
 
-\* Ask the caller to repeat incomplete or unclear numbers
+- Ask the caller to repeat incomplete or unclear numbers
 
-\* Read a valid callback number back once
+- Read a valid callback number back once
 
-\* Summarize the reason for the call
+- Summarize the reason for the call
 
-\* Confirm the caller’s name and callback number
+- Confirm the caller’s name and callback number
 
-\* Confirm relevant property and appointment information
+- Confirm relevant property and appointment information
 
-\* Apply corrections requested by the caller
+- Apply corrections requested by the caller
 
-\* Explain that Jennifer will follow up
+- Explain that Jennifer will follow up
 
 
 
@@ -494,7 +494,7 @@ Transitions to `Final Goodbye` once the caller confirms the information.
 
 
 
-\### 14. Final Goodbye
+### 14. Final Goodbye
 
 
 
@@ -506,7 +506,7 @@ Transitions to `End Call` without waiting for an additional caller response.
 
 
 
-\### 15. End Call
+### 15. End Call
 
 
 
@@ -514,57 +514,46 @@ Terminates the Retell call.
 
 
 
-\## Important Constraints
+## Important Constraints
 
 
 
-\* Ask only one question at a time.
+- Ask only one question at a time.
 
-\* Do not repeat information already provided.
+- Do not repeat information already provided.
 
-\* Do not independently confirm listing information.
+- Do not independently confirm listing information.
 
-\* Do not promise that an appointment is booked without an active calendar integration.
+- Do not promise that an appointment is booked without an active calendar integration.
 
-\* Do not provide legal, financial, tax, lending, appraisal, inspection, or contract advice.
+- Do not provide legal, financial, tax, lending, appraisal, inspection, or contract advice.
 
-\* Do not violate Fair Housing requirements.
+- Do not violate Fair Housing requirements.
 
-\* Do not claim that Andrea is human.
+- Do not claim that Andrea is human.
 
-\* Do not transfer calls until live call transfers are configured.
+- Do not transfer calls until live call transfers are configured.
 
-\* Only the confirmation node may provide the final recap.
-
-
-
-\## Known Documentation Issue
+- Only the confirmation node may provide the final recap.
 
 
 
-The Global Prompt refers to the closing node as `Confirm Details \& Close`, while the Retell workflow currently names it `Confirm Details`.
+
+## Future Improvements
 
 
 
-The node name and Global Prompt reference should be standardized to prevent ambiguity.
+- Activate calendar availability checking and appointment booking.
 
+- Add live call transfers.
 
+- Verify Spanish-agent parity with the English workflow.
 
-\## Future Improvements
+- Add integration-failure handling.
 
+- Add test coverage for every transition.
 
-
-\* Activate calendar availability checking and appointment booking.
-
-\* Add live call transfers.
-
-\* Verify Spanish-agent parity with the English workflow.
-
-\* Add integration-failure handling.
-
-\* Add test coverage for every transition.
-
-\* Version exported Retell configurations when export support is available.
+- Version exported Retell configurations when export support is available.
 
 
 

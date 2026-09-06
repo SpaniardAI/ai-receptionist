@@ -412,7 +412,7 @@ All other conversation and intake nodes must transition to Confirm Details & Clo
 
 
 
-In Confirm Details & Close:
+In Confirm Details:
 
 
 
