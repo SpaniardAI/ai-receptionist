@@ -1,0 +1,49 @@
+{
+  "body": {
+    "event": "call_analyzed",
+    "call": {
+      "call_id": "call_test_001",
+      "call_type": "web_call",
+      "agent_id": "agent_redacted",
+      "agent_version": 0,
+      "agent_name": "Andrea EN - Jennifer Saade - Production",
+      "collected_dynamic_variables": {
+        "previous_node": "Identify Caller & Intent",
+        "current_node": "Buyer Intake"
+      },
+      "call_status": "ended",
+      "start_timestamp": 0,
+      "end_timestamp": 0,
+      "duration_ms": 0,
+      "call_analysis": {
+        "call_summary": "[SANITIZED TEST SUMMARY]",
+        "in_voicemail": false,
+        "user_sentiment": "Positive",
+        "call_successful": true,
+        "custom_analysis_data": {
+          "caller_name": "Test Caller",
+          "callback_number": "+15551234567",
+          "email": "caller@example.com",
+          "caller_type": "Buyer",
+          "reason_for_call": "Interested in purchasing a test property.",
+          "property_address_or_mls": "",
+          "preferred_area": "Test Area",
+          "budget_or_price_range": "$250,000",
+          "bedrooms": 3,
+          "bathrooms": 2,
+          "timeframe": "Within six months",
+          "financing_status": "Financing Not Confirmed",
+          "working_with_agent": "Unknown",
+          "preferred_callback_time": "",
+          "appointment_requested": false,
+          "requested_appointment_time": "",
+          "is_urgent": false,
+          "urgency_reason": "",
+          "lead_priority": "Normal",
+          "call_language": "English"
+        }
+      }
+    },
+    "event_timestamp": 0
+  }
+}
