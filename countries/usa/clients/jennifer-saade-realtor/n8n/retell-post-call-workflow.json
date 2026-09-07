@@ -1,0 +1,106 @@
+﻿{
+    "name":  "Jennifer Retell Post-Call Lead Processing",
+    "nodes":  [
+                  {
+                      "parameters":  {
+                                         "httpMethod":  "POST",
+                                         "path":  "REPLACE_WITH_PRIVATE_WEBHOOK_PATH",
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.webhook",
+                      "typeVersion":  2.1,
+                      "position":  [
+                                       0,
+                                       0
+                                   ],
+                      "id":  "f0996779-6107-4a47-9e70-51e6ed8ff7a7",
+                      "name":  "Webhook"
+                  },
+                  {
+                      "parameters":  {
+                                         "conditions":  {
+                                                            "options":  {
+                                                                            "caseSensitive":  true,
+                                                                            "leftValue":  "",
+                                                                            "typeValidation":  "strict",
+                                                                            "version":  3
+                                                                        },
+                                                            "conditions":  [
+                                                                               {
+                                                                                   "id":  "4a5e79be-74d6-4e53-bdd3-707ac0d2319a",
+                                                                                   "leftValue":  "={{ $json.body.event }}",
+                                                                                   "rightValue":  "call_analyzed",
+                                                                                   "operator":  {
+                                                                                                    "type":  "string",
+                                                                                                    "operation":  "equals",
+                                                                                                    "name":  "filter.operator.equals"
+                                                                                                }
+                                                                               }
+                                                                           ],
+                                                            "combinator":  "and"
+                                                        },
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.if",
+                      "typeVersion":  2.3,
+                      "position":  [
+                                       224,
+                                       0
+                                   ],
+                      "id":  "4e48b47e-0fe0-47cb-a062-5be904dfb523",
+                      "name":  "Is Call Analyzed"
+                  },
+                  {
+                      "parameters":  {
+                                         "jsCode":  "const input = $input.first().json;\nconst body = input.body ?? {};\nconst call = body.call ?? {};\nconst analysis = call.call_analysis ?? {};\nconst lead = analysis.custom_analysis_data ?? {};\n\nreturn [\n  {\n    json: {\n      source: \"retell\",\n      event: body.event ?? \"\",\n      event_timestamp: body.event_timestamp ?? null,\n\n      call_id: call.call_id ?? \"\",\n      call_type: call.call_type ?? \"\",\n      call_status: call.call_status ?? \"\",\n      agent_id: call.agent_id ?? \"\",\n      agent_name: call.agent_name ?? \"\",\n      agent_version: call.agent_version ?? null,\n      start_timestamp: call.start_timestamp ?? null,\n      end_timestamp: call.end_timestamp ?? null,\n      duration_ms: call.duration_ms ?? null,\n\n      call_summary: analysis.call_summary ?? \"\",\n      in_voicemail: analysis.in_voicemail ?? false,\n      user_sentiment: analysis.user_sentiment ?? \"\",\n      call_successful: analysis.call_successful ?? false,\n\n      caller_name: lead.caller_name ?? \"\",\n      callback_number: lead.callback_number ?? \"\",\n      email: lead.email ?? \"\",\n      caller_type: lead.caller_type ?? \"Other\",\n      reason_for_call: lead.reason_for_call ?? \"\",\n      property_address_or_mls: lead.property_address_or_mls ?? \"\",\n      preferred_area: lead.preferred_area ?? \"\",\n      budget_or_price_range: lead.budget_or_price_range ?? \"\",\n      bedrooms: lead.bedrooms ?? null,\n      bathrooms: lead.bathrooms ?? null,\n      timeframe: lead.timeframe ?? \"\",\n      financing_status: lead.financing_status ?? \"Not Applicable\",\n      working_with_agent: lead.working_with_agent ?? \"Unknown\",\n      preferred_callback_time: lead.preferred_callback_time ?? \"\",\n      appointment_requested: lead.appointment_requested ?? false,\n      requested_appointment_time:\n        lead.requested_appointment_time ?? \"\",\n      is_urgent: lead.is_urgent ?? false,\n      urgency_reason: lead.urgency_reason ?? \"\",\n      lead_priority: lead.lead_priority ?? \"Normal\",\n      call_language: lead.call_language ?? \"Unknown\",\n\n      processed_at: new Date().toISOString()\n    }\n  }\n];"
+                                     },
+                      "type":  "n8n-nodes-base.code",
+                      "typeVersion":  2,
+                      "position":  [
+                                       448,
+                                       -96
+                                   ],
+                      "id":  "135531f9-a86d-4fd6-b12d-51d95e3938ac",
+                      "name":  "Normalize Lead Data"
+                  }
+              ],
+    "connections":  {
+                        "Webhook":  {
+                                        "main":  [
+                                                     [
+                                                         {
+                                                             "node":  "Is Call Analyzed",
+                                                             "type":  "main",
+                                                             "index":  0
+                                                         }
+                                                     ]
+                                                 ]
+                                    },
+                        "Is Call Analyzed":  {
+                                                 "main":  [
+                                                              [
+                                                                  {
+                                                                      "node":  "Normalize Lead Data",
+                                                                      "type":  "main",
+                                                                      "index":  0
+                                                                  }
+                                                              ]
+                                                          ]
+                                             }
+                    },
+    "active":  false,
+    "settings":  {
+                     "executionOrder":  "v1",
+                     "binaryMode":  "separate"
+                 },
+    "nodeGroups":  [
+
+                   ],
+    "tags":  [
+
+             ]
+}
