@@ -84,8 +84,6 @@ The format is based on chronological, dated entries. Never include passwords, AP
 
 \* Complete and test the seller-intake flow.
 
-\* Connect Google Sheets.
-
 \* Configure Outlook notifications.
 
 \* Configure WhatsApp notifications and follow-up.
@@ -103,4 +101,26 @@ The format is based on chronological, dated entries. Never include passwords, AP
 \* Move all temporary connections to Jennifer’s production accounts.
 
 
+
+\### Completed: n8n and Google Sheets Integration
+
+
+
+\- Added `call\_analyzed` event filtering.
+
+\- Added lead-payload normalization.
+
+\- Removed transcripts, access tokens, headers, and unnecessary call data from downstream records.
+
+\- Added Google Sheets append-or-update behavior.
+
+\- Configured `call\_id` as the unique matching field.
+
+\- Added Central Time conversion using `America/Chicago`.
+
+\- Completed a successful end-to-end test.
+
+\- Rotated the exposed webhook path.
+
+\- Added a sanitized n8n workflow export to GitHub.
 

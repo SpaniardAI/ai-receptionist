@@ -18,6 +18,30 @@ Building and testing the lead-intake and integration workflow for Jennifer Saade
 
 
 
+\### n8n and Google Sheets
+
+
+
+\- Connected Retell’s `call\_analyzed` webhook to n8n.
+
+\- Added filtering so only `call\_analyzed` events continue.
+
+\- Added a normalization step that converts the Retell payload into a clean lead record.
+
+\- Connected Ramon’s temporary Google Sheets account for testing.
+
+\- Configured automatic column mapping.
+
+\- Configured `call\_id` as the unique upsert field.
+
+\- Converted `processed\_at` to `America/Chicago` time.
+
+\- Completed an end-to-end Retell to n8n to Google Sheets test.
+
+\- Exported and committed a sanitized n8n workflow.
+
+
+
 \### Retell AI
 
 
@@ -106,8 +130,6 @@ Building and testing the lead-intake and integration workflow for Jennifer Saade
 
 
 
-\* Google Sheets lead logging
-
 \* Outlook email notifications
 
 \* WhatsApp notifications and follow-up
@@ -179,6 +201,4 @@ The current workflow may use Ramon’s accounts for testing, including Google Sh
 
 
 API keys, authentication tokens, webhook secrets, passwords, and customer information must not be committed to GitHub.
-
-
 
