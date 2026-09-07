@@ -56,7 +56,7 @@
                   },
                   {
                       "parameters":  {
-                                         "jsCode":  "const input = $input.first().json;\nconst body = input.body ?? {};\nconst call = body.call ?? {};\nconst analysis = call.call_analysis ?? {};\nconst lead = analysis.custom_analysis_data ?? {};\n\nreturn [\n  {\n    json: {\n      source: \"retell\",\n      event: body.event ?? \"\",\n      event_timestamp: body.event_timestamp ?? null,\n\n      call_id: call.call_id ?? \"\",\n      call_type: call.call_type ?? \"\",\n      call_status: call.call_status ?? \"\",\n      agent_id: call.agent_id ?? \"\",\n      agent_name: call.agent_name ?? \"\",\n      agent_version: call.agent_version ?? null,\n      start_timestamp: call.start_timestamp ?? null,\n      end_timestamp: call.end_timestamp ?? null,\n      duration_ms: call.duration_ms ?? null,\n\n      call_summary: analysis.call_summary ?? \"\",\n      in_voicemail: analysis.in_voicemail ?? false,\n      user_sentiment: analysis.user_sentiment ?? \"\",\n      call_successful: analysis.call_successful ?? false,\n\n      caller_name: lead.caller_name ?? \"\",\n      callback_number: lead.callback_number ?? \"\",\n      email: lead.email ?? \"\",\n      caller_type: lead.caller_type ?? \"Other\",\n      reason_for_call: lead.reason_for_call ?? \"\",\n      property_address_or_mls: lead.property_address_or_mls ?? \"\",\n      preferred_area: lead.preferred_area ?? \"\",\n      budget_or_price_range: lead.budget_or_price_range ?? \"\",\n      bedrooms: lead.bedrooms ?? null,\n      bathrooms: lead.bathrooms ?? null,\n      timeframe: lead.timeframe ?? \"\",\n      financing_status: lead.financing_status ?? \"Not Applicable\",\n      working_with_agent: lead.working_with_agent ?? \"Unknown\",\n      preferred_callback_time: lead.preferred_callback_time ?? \"\",\n      appointment_requested: lead.appointment_requested ?? false,\n      requested_appointment_time:\n        lead.requested_appointment_time ?? \"\",\n      is_urgent: lead.is_urgent ?? false,\n      urgency_reason: lead.urgency_reason ?? \"\",\n      lead_priority: lead.lead_priority ?? \"Normal\",\n      call_language: lead.call_language ?? \"Unknown\",\n\n      processed_at: new Date().toISOString()\n    }\n  }\n];"
+                                         "jsCode":  "const input = $input.first().json;\nconst body = input.body ?? {};\nconst call = body.call ?? {};\nconst analysis = call.call_analysis ?? {};\nconst lead = analysis.custom_analysis_data ?? {};\n\nreturn [\n  {\n    json: {\n      source: \"retell\",\n      event: body.event ?? \"\",\n      event_timestamp: body.event_timestamp ?? null,\n\n      call_id: call.call_id ?? \"\",\n      call_type: call.call_type ?? \"\",\n      call_status: call.call_status ?? \"\",\n      agent_id: call.agent_id ?? \"\",\n      agent_name: call.agent_name ?? \"\",\n      agent_version: call.agent_version ?? null,\n      start_timestamp: call.start_timestamp ?? null,\n      end_timestamp: call.end_timestamp ?? null,\n      duration_ms: call.duration_ms ?? null,\n\n      call_summary: analysis.call_summary ?? \"\",\n      in_voicemail: analysis.in_voicemail ?? false,\n      user_sentiment: analysis.user_sentiment ?? \"\",\n      call_successful: analysis.call_successful ?? false,\n\n      caller_name: lead.caller_name ?? \"\",\n      callback_number: lead.callback_number ?? \"\",\n      email: lead.email ?? \"\",\n      caller_type: lead.caller_type ?? \"Other\",\n      reason_for_call: lead.reason_for_call ?? \"\",\n      property_address_or_mls: lead.property_address_or_mls ?? \"\",\n      preferred_area: lead.preferred_area ?? \"\",\n      budget_or_price_range: lead.budget_or_price_range ?? \"\",\n      bedrooms: lead.bedrooms ?? null,\n      bathrooms: lead.bathrooms ?? null,\n      timeframe: lead.timeframe ?? \"\",\n      financing_status: lead.financing_status ?? \"Not Applicable\",\n      working_with_agent: lead.working_with_agent ?? \"Unknown\",\n      preferred_callback_time: lead.preferred_callback_time ?? \"\",\n      appointment_requested: lead.appointment_requested ?? false,\n      requested_appointment_time:\n        lead.requested_appointment_time ?? \"\",\n      is_urgent: lead.is_urgent ?? false,\n      urgency_reason: lead.urgency_reason ?? \"\",\n      lead_priority: lead.lead_priority ?? \"Normal\",\n      call_language: lead.call_language ?? \"Unknown\",\n\n      processed_at: new Date().toLocaleString(\"sv-SE\", {\n        timeZone: \"America/Chicago\",\n        hour12: false\n      })\n    }\n  }\n];"
                                      },
                       "type":  "n8n-nodes-base.code",
                       "typeVersion":  2,
@@ -66,6 +66,327 @@
                                    ],
                       "id":  "135531f9-a86d-4fd6-b12d-51d95e3938ac",
                       "name":  "Normalize Lead Data"
+                  },
+                  {
+                      "parameters":  {
+                                         "operation":  "appendOrUpdate",
+                                         "documentId":  {
+                                                            "__rl":  true,
+                                                            "value":  "REPLACE_WITH_GOOGLE_SHEET_ID",
+                                                            "mode":  "list",
+                                                            "cachedResultName":  "TEST_SPREADSHEET"
+                                                        },
+                                         "sheetName":  {
+                                                           "__rl":  true,
+                                                           "value":  "Leads",
+                                                           "mode":  "list",
+                                                           "cachedResultName":  "Leads"
+                                                       },
+                                         "columns":  {
+                                                         "mappingMode":  "autoMapInputData",
+                                                         "value":  {
+
+                                                                   },
+                                                         "matchingColumns":  [
+                                                                                 "call_id"
+                                                                             ],
+                                                         "schema":  [
+                                                                        {
+                                                                            "id":  "processed_at",
+                                                                            "displayName":  "processed_at",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "event_timestamp",
+                                                                            "displayName":  "event_timestamp",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "call_id",
+                                                                            "displayName":  "call_id",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true,
+                                                                            "removed":  false
+                                                                        },
+                                                                        {
+                                                                            "id":  "call_type",
+                                                                            "displayName":  "call_type",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "call_status",
+                                                                            "displayName":  "call_status",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "agent_name",
+                                                                            "displayName":  "agent_name",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "duration_ms",
+                                                                            "displayName":  "duration_ms",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "call_successful",
+                                                                            "displayName":  "call_successful",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "in_voicemail",
+                                                                            "displayName":  "in_voicemail",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "user_sentiment",
+                                                                            "displayName":  "user_sentiment",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "call_summary",
+                                                                            "displayName":  "call_summary",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "caller_name",
+                                                                            "displayName":  "caller_name",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "callback_number",
+                                                                            "displayName":  "callback_number",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "email",
+                                                                            "displayName":  "email",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "caller_type",
+                                                                            "displayName":  "caller_type",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "reason_for_call",
+                                                                            "displayName":  "reason_for_call",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "property_address_or_mls",
+                                                                            "displayName":  "property_address_or_mls",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "preferred_area",
+                                                                            "displayName":  "preferred_area",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "budget_or_price_range",
+                                                                            "displayName":  "budget_or_price_range",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "bedrooms",
+                                                                            "displayName":  "bedrooms",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "bathrooms",
+                                                                            "displayName":  "bathrooms",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "timeframe",
+                                                                            "displayName":  "timeframe",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "financing_status",
+                                                                            "displayName":  "financing_status",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "working_with_agent",
+                                                                            "displayName":  "working_with_agent",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "preferred_callback_time",
+                                                                            "displayName":  "preferred_callback_time",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "appointment_requested",
+                                                                            "displayName":  "appointment_requested",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "requested_appointment_time",
+                                                                            "displayName":  "requested_appointment_time",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "is_urgent",
+                                                                            "displayName":  "is_urgent",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "urgency_reason",
+                                                                            "displayName":  "urgency_reason",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "lead_priority",
+                                                                            "displayName":  "lead_priority",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        },
+                                                                        {
+                                                                            "id":  "call_language",
+                                                                            "displayName":  "call_language",
+                                                                            "required":  false,
+                                                                            "defaultMatch":  false,
+                                                                            "display":  true,
+                                                                            "type":  "string",
+                                                                            "canBeUsedToMatch":  true
+                                                                        }
+                                                                    ],
+                                                         "attemptToConvertTypes":  false,
+                                                         "convertFieldsToString":  false
+                                                     },
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.googleSheets",
+                      "typeVersion":  4.7,
+                      "position":  [
+                                       672,
+                                       -96
+                                   ],
+                      "id":  "04fea405-b032-4a4b-acaa-0fac760985e9",
+                      "name":  "Upsert Lead in Googlle Sheets"
                   }
               ],
     "connections":  {
@@ -90,7 +411,18 @@
                                                                   }
                                                               ]
                                                           ]
-                                             }
+                                             },
+                        "Normalize Lead Data":  {
+                                                    "main":  [
+                                                                 [
+                                                                     {
+                                                                         "node":  "Upsert Lead in Googlle Sheets",
+                                                                         "type":  "main",
+                                                                         "index":  0
+                                                                     }
+                                                                 ]
+                                                             ]
+                                                }
                     },
     "active":  false,
     "settings":  {
