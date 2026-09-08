@@ -1,4 +1,4 @@
-\# Changelog
+# Changelog
 
 
 
@@ -10,117 +10,124 @@ The format is based on chronological, dated entries. Never include passwords, AP
 
 
 
-\## September 6, 2026
+## September 6, 2026
 
 
 
-\### Repository
+### Repository
 
 
 
-\* Created the USA and Mexico project structure.
+* Created the USA and Mexico project structure.
 
-\* Created the Jennifer Saade Realtor client folder.
+* Created the Jennifer Saade Realtor client folder.
 
-\* Added separate folders for Retell, n8n, Twilio, integrations, prompts, and tests.
+* Added separate folders for Retell, n8n, Twilio, integrations, prompts, and tests.
 
-\* Added the project README.
+* Added the project README.
 
-\* Added the project status tracker.
+* Added the project status tracker.
 
-\* Documented the proposed system architecture.
+* Documented the proposed system architecture.
 
-\* Documented security and credential-handling requirements.
+* Documented security and credential-handling requirements.
 
 
 
-\### Retell AI
+### Retell AI
 
 
 
-\* Created Andrea, Jennifer’s virtual receptionist.
+* Created Andrea, Jennifer’s virtual receptionist.
 
-\* Added English-language call handling.
+* Added English-language call handling.
 
-\* Added the option to assist callers in Spanish.
+* Added the option to assist callers in Spanish.
 
-\* Created and tested the initial buyer-intake flow.
+* Created and tested the initial buyer-intake flow.
 
-\* Added structured post-call lead fields.
+* Added structured post-call lead fields.
 
-\* Added appointment, urgency, priority, and language fields.
+* Added appointment, urgency, priority, and language fields.
 
 
 
-\### Automation
+### Automation
 
 
 
-\* Created the initial automation webhook.
+* Created the initial automation webhook.
 
-\* Connected the Retell workflow to the webhook.
+* Connected the Retell workflow to the webhook.
 
-\* Successfully received data from a test call.
+* Successfully received data from a test call.
 
-\* Identified Google Sheets, Outlook, WhatsApp, HubSpot, and KW Command as required integrations.
+* Identified Google Sheets, Outlook, WhatsApp, HubSpot, and KW Command as required integrations.
 
 
 
-\### Testing
+### Testing
 
 
 
-\* Completed an initial buyer-intake call test.
+* Completed an initial buyer-intake call test.
 
-\* Confirmed that call data reached the automation webhook.
+* Confirmed that call data reached the automation webhook.
 
-\* Deferred seller-intake testing for the next testing session.
+* Deferred seller-intake testing for the next testing session.
 
 
 
-\### Pending
+### Pending
 
 
 
-\* Complete and test the seller-intake flow.
+* Complete and test the seller-intake flow.
 
-\* Configure Outlook notifications.
+* Configure WhatsApp notifications and follow-up.
 
-\* Configure WhatsApp notifications and follow-up.
+* Connect HubSpot.
 
-\* Connect HubSpot.
+* Connect KW Command when access becomes available.
 
-\* Connect KW Command when access becomes available.
+* Add calendar scheduling.
 
-\* Add calendar scheduling.
+* Complete Spanish-language tests.
 
-\* Complete Spanish-language tests.
+* Complete failure-handling and incomplete-data tests.
 
-\* Complete failure-handling and incomplete-data tests.
+* Move all temporary connections to Jennifer’s production accounts.
 
-\* Move all temporary connections to Jennifer’s production accounts.
 
 
+### Completed: n8n and Google Sheets Integration
 
-\### Completed: n8n and Google Sheets Integration
 
 
+- Added `call_analyzed` event filtering.
 
-\- Added `call\_analyzed` event filtering.
+- Added lead-payload normalization.
 
-\- Added lead-payload normalization.
+- Removed transcripts, access tokens, headers, and unnecessary call data from downstream records.
 
-\- Removed transcripts, access tokens, headers, and unnecessary call data from downstream records.
+- Added Google Sheets append-or-update behavior.
 
-\- Added Google Sheets append-or-update behavior.
+- Configured `call_id` as the unique matching field.
 
-\- Configured `call\_id` as the unique matching field.
+- Added Central Time conversion using `America/Chicago`.
 
-\- Added Central Time conversion using `America/Chicago`.
+- Completed a successful end-to-end test.
 
-\- Completed a successful end-to-end test.
+- Rotated the exposed webhook path.
 
-\- Rotated the exposed webhook path.
+- Added a sanitized n8n workflow export to GitHub.
 
-\- Added a sanitized n8n workflow export to GitHub.
+
+### Completed: Outlook Lead Notifications
+
+- Added an independent Outlook notification branch after lead normalization.
+- Configured dynamic email subjects and lead-detail messages.
+- Added user-friendly Yes/No formatting.
+- Verified successful delivery to the temporary testing mailbox.
+- Re-exported and sanitized the updated n8n workflow.
 

@@ -1,12 +1,12 @@
-\# Jennifer Saade Realtor AI Receptionist — Project Status
+# Jennifer Saade Realtor AI Receptionist — Project Status
 
 
 
-\*Last updated: September 6, 2026\*
+*Last updated: September 6, 2026*
 
 
 
-\## Current Phase
+## Current Phase
 
 
 
@@ -14,159 +14,163 @@ Building and testing the lead-intake and integration workflow for Jennifer Saade
 
 
 
-\## Completed
+## Completed
 
+### Outlook Notifications
 
+- Connected Ramon’s Microsoft 365 account for temporary testing.
+- Added Outlook lead-alert emails to `ramon@spaniard.ai`.
+- Added dynamic priority, caller type, caller name, and lead details.
+- Converted Boolean fields to user-friendly Yes/No values.
+- Confirmed successful end-to-end email delivery.
 
-\### n8n and Google Sheets
+### n8n and Google Sheets
 
 
 
-\- Connected Retell’s `call\_analyzed` webhook to n8n.
+- Connected Retell’s `call_analyzed` webhook to n8n.
 
-\- Added filtering so only `call\_analyzed` events continue.
+- Added filtering so only `call_analyzed` events continue.
 
-\- Added a normalization step that converts the Retell payload into a clean lead record.
+- Added a normalization step that converts the Retell payload into a clean lead record.
 
-\- Connected Ramon’s temporary Google Sheets account for testing.
+- Connected Ramon’s temporary Google Sheets account for testing.
 
-\- Configured automatic column mapping.
+- Configured automatic column mapping.
 
-\- Configured `call\_id` as the unique upsert field.
+- Configured `call_id` as the unique upsert field.
 
-\- Converted `processed\_at` to `America/Chicago` time.
+- Converted `processed_at` to `America/Chicago` time.
 
-\- Completed an end-to-end Retell to n8n to Google Sheets test.
+- Completed an end-to-end Retell to n8n to Google Sheets test.
 
-\- Exported and committed a sanitized n8n workflow.
+- Exported and committed a sanitized n8n workflow.
 
 
 
-\### Retell AI
+### Retell AI
 
 
 
-\* Created the AI receptionist named Andrea.
+* Created the AI receptionist named Andrea.
 
-\* Added the English greeting.
+* Added the English greeting.
 
-\* Added the option to assist callers in Spanish.
+* Added the option to assist callers in Spanish.
 
-\* Created the buyer-intake conversation flow.
+* Created the buyer-intake conversation flow.
 
-\* Tested the buyer-intake flow.
+* Tested the buyer-intake flow.
 
-\* Configured the following lead fields:
+* Configured the following lead fields:
 
 
 
-&#x20; \* caller\_name
+&#x20; * caller_name
 
-&#x20; \* callback\_number
+&#x20; * callback_number
 
-&#x20; \* email
+&#x20; * email
 
-&#x20; \* caller\_type
+&#x20; * caller_type
 
-&#x20; \* reason\_for\_call
+&#x20; * reason_for_call
 
-&#x20; \* property\_address\_or\_mls
+&#x20; * property_address_or_mls
 
-&#x20; \* preferred\_area
+&#x20; * preferred_area
 
-&#x20; \* budget\_or\_price\_range
+&#x20; * budget_or_price_range
 
-&#x20; \* bedrooms
+&#x20; * bedrooms
 
-&#x20; \* bathrooms
+&#x20; * bathrooms
 
-&#x20; \* timeframe
+&#x20; * timeframe
 
-&#x20; \* financing\_status
+&#x20; * financing_status
 
-&#x20; \* working\_with\_agent
+&#x20; * working_with_agent
 
-&#x20; \* preferred\_callback\_time
+&#x20; * preferred_callback_time
 
-&#x20; \* appointment\_requested
+&#x20; * appointment_requested
 
-&#x20; \* requested\_appointment\_time
+&#x20; * requested_appointment_time
 
-&#x20; \* is\_urgent
+&#x20; * is_urgent
 
-&#x20; \* urgency\_reason
+&#x20; * urgency_reason
 
-&#x20; \* lead\_priority
+&#x20; * lead_priority
 
-&#x20; \* call\_language
+&#x20; * call_language
 
 
 
-\### Webhook
+### Webhook
 
 
 
-\* Created the webhook workflow.
+* Created the webhook workflow.
 
-\* Connected Retell AI to the webhook.
+* Connected Retell AI to the webhook.
 
-\* Successfully received test-call data through the webhook.
+* Successfully received test-call data through the webhook.
 
 
 
-\## In Progress
+## In Progress
 
 
 
-\* Seller-intake conversation flow.
+* Seller-intake conversation flow.
 
-\* Organizing project documentation in GitHub.
+* Organizing project documentation in GitHub.
 
-\* Preparing external integrations.
+* Preparing external integrations.
 
 
 
-\## Pending Integrations
+## Pending Integrations
 
 
 
-\* Outlook email notifications
+* WhatsApp notifications and follow-up
 
-\* WhatsApp notifications and follow-up
+* HubSpot CRM
 
-\* HubSpot CRM
+* KW Command CRM
 
-\* KW Command CRM
+* Calendar and appointment scheduling
 
-\* Calendar and appointment scheduling
 
 
+## Pending Tests
 
-\## Pending Tests
 
 
+* Complete seller-intake test.
 
-\* Complete seller-intake test.
+* Test Spanish buyer intake.
 
-\* Test Spanish buyer intake.
+* Test Spanish seller intake.
 
-\* Test Spanish seller intake.
+* Test urgent-call escalation.
 
-\* Test urgent-call escalation.
+* Test appointment requests.
 
-\* Test appointment requests.
+* Test callers who do not provide all requested information.
 
-\* Test callers who do not provide all requested information.
+* Test webhook handling when fields are empty.
 
-\* Test webhook handling when fields are empty.
+* Test duplicate callers and repeat leads.
 
-\* Test duplicate callers and repeat leads.
+* Test failed integration handling.
 
-\* Test failed integration handling.
 
 
-
-\## Temporary Testing Environment
+## Temporary Testing Environment
 
 
 
@@ -174,29 +178,29 @@ The current workflow may use Ramon’s accounts for testing, including Google Sh
 
 
 
-\## Production Requirements
+## Production Requirements
 
 
 
-\* Move integrations to Jennifer’s accounts.
+* Move integrations to Jennifer’s accounts.
 
-\* Replace test credentials with production credentials.
+* Replace test credentials with production credentials.
 
-\* Confirm Jennifer’s notification preferences.
+* Confirm Jennifer’s notification preferences.
 
-\* Connect the final CRM.
+* Connect the final CRM.
 
-\* Configure the production telephone number.
+* Configure the production telephone number.
 
-\* Complete end-to-end testing.
+* Complete end-to-end testing.
 
-\* Review privacy and consent requirements.
+* Review privacy and consent requirements.
 
-\* Confirm the production launch date.
+* Confirm the production launch date.
 
 
 
-\## Security
+## Security
 
 
 
