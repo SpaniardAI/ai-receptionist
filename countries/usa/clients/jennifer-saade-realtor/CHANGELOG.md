@@ -84,8 +84,6 @@ The format is based on chronological, dated entries. Never include passwords, AP
 
 * Complete and test the seller-intake flow.
 
-* Configure WhatsApp notifications and follow-up.
-
 * Connect HubSpot.
 
 * Connect KW Command when access becomes available.
@@ -121,6 +119,20 @@ The format is based on chronological, dated entries. Never include passwords, AP
 - Rotated the exposed webhook path.
 
 - Added a sanitized n8n workflow export to GitHub.
+
+- Added Outlook lead-alert notifications.
+
+- Added WhatsApp lead-alert notifications through Twilio.
+
+- Formatted WhatsApp alerts with one field per line.
+
+- Configured notification timestamps for Central Time.
+
+- Updated Retell intake transitions to require all applicable questions before confirmation.
+
+- Completed a successful end-to-end test across Google Sheets, Outlook, WhatsApp, and Twilio.
+
+- Updated the sanitized n8n workflow export in GitHub.
 
 
 ### Completed: Outlook Lead Notifications

@@ -1,5 +1,5 @@
 ﻿{
-    "name":  "Jennifer Retell Post-Call Lead Processing",
+    "name":  "Retell - Post-Call Lead Processing",
     "nodes":  [
                   {
                       "parameters":  {
@@ -16,7 +16,8 @@
                                        0
                                    ],
                       "id":  "f0996779-6107-4a47-9e70-51e6ed8ff7a7",
-                      "name":  "Webhook"
+                      "name":  "Webhook",
+                      "webhookId":  "6e5449c5-deb8-4a4a-9dff-4b6e2bd864c4"
                   },
                   {
                       "parameters":  {
@@ -383,7 +384,7 @@
                       "typeVersion":  4.7,
                       "position":  [
                                        672,
-                                       -176
+                                       -320
                                    ],
                       "id":  "04fea405-b032-4a4b-acaa-0fac760985e9",
                       "name":  "Upsert Lead in Googlle Sheets"
@@ -392,7 +393,7 @@
                       "parameters":  {
                                          "toRecipients":  "REPLACE_WITH_NOTIFICATION_EMAIL",
                                          "subject":  "=[{{ $json.lead_priority }}] {{ $json.caller_type }} lead - {{ $json.caller_name }}",
-                                         "bodyContent":  "=New lead received from Andrea\n\nPriority: {{ $json.lead_priority }}\nCaller type: {{ $json.caller_type }}\nLanguage: {{ $json.call_language }}\n\nName: {{ $json.caller_name }}\nCallback number: {{ $json.callback_number }}\nEmail: {{ $json.email }}\n\nReason for call: {{ $json.reason_for_call }}\nProperty or MLS: {{ $json.property_address_or_mls }}\nPreferred area: {{ $json.preferred_area }}\nBudget or price range: {{ $json.budget_or_price_range }}\nBedrooms: {{ $json.bedrooms }}\nBathrooms: {{ $json.bathrooms }}\nTimeframe: {{ $json.timeframe }}\nFinancing status: {{ $json.financing_status }}\nWorking with agent: {{ $json.working_with_agent }}\n\nAppointment requested: {{ $json.appointment_requested ? \u0027Yes\u0027 : \u0027No\u0027 }}\nRequested appointment time: {{ $json.requested_appointment_time }}\n\nUrgent: {{ $json.is_urgent ? \u0027Yes\u0027 : \u0027No\u0027 }}\nUrgency reason: {{ $json.urgency_reason }}\n\nCall summary:\n{{ $json.call_summary }}\n\nCall ID: {{ $json.call_id }}\nProcessed at: {{ $json.processed_at }}\n",
+                                         "bodyContent":  "=New lead received from Andrea\n\nPriority: {{ $json.lead_priority }}\nCaller type: {{ $json.caller_type }}\nLanguage: {{ $json.call_language }}\n\nName: {{ $json.caller_name }}\nCallback number: {{ $json.callback_number }}\nEmail: {{ $json.email }}\n\nReason for call: {{ $json.reason_for_call }}\nProperty or MLS: {{ $json.property_address_or_mls }}\nPreferred area: {{ $json.preferred_area }}\nBudget or price range: {{ $json.budget_or_price_range }}\nBedrooms: {{ $json.bedrooms }}\nBathrooms: {{ $json.bathrooms }}\nTimeframe: {{ $json.timeframe }}\nFinancing status: {{ $json.financing_status }}\nWorking with agent: {{ $json.working_with_agent }}\nPreferred callback time: {{ $json.preferred_callback_time }}\n\nAppointment requested: {{ $json.appointment_requested ? \u0027Yes\u0027 : \u0027No\u0027 }}\nRequested appointment time: {{ $json.appointment_requested ? ($json.requested_appointment_time || \u0027Not specified\u0027) : \u0027Not applicable\u0027 }}\n\nUrgent: {{ $json.is_urgent ? \u0027Yes\u0027 : \u0027No\u0027 }}\nUrgency reason: {{ $json.urgency_reason }}\n\nCall summary:\n{{ $json.call_summary }}\n\nCall ID: {{ $json.call_id }}\nProcessed at: {{ $json.processed_at }}\n",
                                          "additionalFields":  {
 
                                                               }
@@ -401,12 +402,35 @@
                       "typeVersion":  2,
                       "position":  [
                                        672,
-                                       48
+                                       -96
                                    ],
                       "id":  "81edc90d-85e7-4d88-a1dc-77122a0dffb0",
-                      "name":  "Send Outlook Lead Alert"
+                      "name":  "Send Outlook Lead Alert",
+                      "webhookId":  "ad23e4e3-7a77-4905-8df7-52cd57ca3011"
+                  },
+                  {
+                      "parameters":  {
+                                         "from":  "REPLACE_WITH_TWILIO_NUMBER",
+                                         "to":  "REPLACE_WITH_WHATSAPP_RECIPIENT",
+                                         "toWhatsapp":  true,
+                                         "message":  "=New lead from Andrea\n\nPriority: {{ $json.lead_priority }}\nType: {{ $json.caller_type }}\nLanguage: {{ $json.call_language }}\n\nName: {{ $json.caller_name }}\nPhone: {{ $json.callback_number }}\nEmail: {{ $json.email }}\n\nReason: {{ $json.reason_for_call }}\nProperty or MLS: {{ $json.property_address_or_mls }}\nPreferred area: {{ $json.preferred_area }}\nBudget or price range: {{ $json.budget_or_price_range }}\nTimeframe: {{ $json.timeframe }}\n\nPreferred callback time: {{ $json.preferred_callback_time }}\nAppointment requested: {{ $json.appointment_requested ? \u0027Yes\u0027 : \u0027No\u0027 }}\nUrgent: {{ $json.is_urgent ? \u0027Yes\u0027 : \u0027No\u0027 }}\n\nSummary: {{ $json.call_summary }}\n\nProcessed: {{ $json.processed_at }} Central Time",
+                                         "options":  {
+
+                                                     }
+                                     },
+                      "type":  "n8n-nodes-base.twilio",
+                      "typeVersion":  1,
+                      "position":  [
+                                       672,
+                                       112
+                                   ],
+                      "id":  "f7fbc6c9-5096-4b5f-9c55-bbd3becb26e8",
+                      "name":  "Send WhatsApp Lead Alert"
                   }
               ],
+    "pinData":  {
+
+                },
     "connections":  {
                         "Webhook":  {
                                         "main":  [
@@ -434,12 +458,17 @@
                                                     "main":  [
                                                                  [
                                                                      {
-                                                                         "node":  "Send Outlook Lead Alert",
+                                                                         "node":  "Upsert Lead in Googlle Sheets",
                                                                          "type":  "main",
                                                                          "index":  0
                                                                      },
                                                                      {
-                                                                         "node":  "Upsert Lead in Googlle Sheets",
+                                                                         "node":  "Send WhatsApp Lead Alert",
+                                                                         "type":  "main",
+                                                                         "index":  0
+                                                                     },
+                                                                     {
+                                                                         "node":  "Send Outlook Lead Alert",
                                                                          "type":  "main",
                                                                          "index":  0
                                                                      }
@@ -452,16 +481,29 @@
 
                                                                      ]
                                                                  ]
-                                                    }
+                                                    },
+                        "Send WhatsApp Lead Alert":  {
+                                                         "main":  [
+                                                                      [
+
+                                                                      ]
+                                                                  ]
+                                                     }
                     },
-    "active":  false,
+    "active":  true,
     "settings":  {
                      "executionOrder":  "v1",
                      "binaryMode":  "separate"
                  },
+    "versionId":  "dd1476c1-008c-40cc-948f-fbc10f0ac2f0",
+    "meta":  {
+                 "templateCredsSetupCompleted":  true,
+                 "instanceId":  "e24627d904db87fce38fb599855a3f37fe2c48b65fc3eaa4df4cfd9b47ed43c8"
+             },
     "nodeGroups":  [
 
                    ],
+    "id":  "oeNM9Pl82kEDAGF1",
     "tags":  [
 
              ]
